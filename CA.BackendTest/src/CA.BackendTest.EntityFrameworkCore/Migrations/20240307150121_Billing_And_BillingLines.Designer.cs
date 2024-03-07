@@ -4,6 +4,7 @@ using CA.BackendTest.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace CA.BackendTest.Migrations
 {
     [DbContext(typeof(BackendTestDbContext))]
-    partial class BackendTestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240307150121_Billing_And_BillingLines")]
+    partial class Billing_And_BillingLines
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

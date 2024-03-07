@@ -7,28 +7,26 @@ namespace CA.BackendTest.Services
 {
     public class BillingService : ITransientDependency
     {
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public BillingService(HttpClient httpClient)
+        public BillingService(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
         }
 
         public async Task<HttpResponseMessage> GetBillingDataAsync()
         {
-            // call the HTTP endpoint for the billing route
-            var response = await _httpClient.GetAsync("https://65c3b12439055e7482c16bca.mockapi.io/api/v1/billing");
-            response.EnsureSuccessStatusCode(); // throw an exception if the response is not successful
-
+            var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.GetAsync("https://65c3b12439055e7482c16bca.mockapi.io/api/v1/billing");
+            response.EnsureSuccessStatusCode();
             return response;
         }
 
         public async Task<HttpResponseMessage> GetBillingLinesDataAsync(string billingId)
         {
-            // call the HTTP endpoint for the billing lines route
-            var response = await _httpClient.GetAsync($"https://65c3b12439055e7482c16bca.mockapi.io/api/v1/billing/{billingId}");
-            response.EnsureSuccessStatusCode(); // throw an exception if the response is not successful
-
+            var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.GetAsync($"https://65c3b12439055e7482c16bca.mockapi.io/api/v1/billing/{billingId}");
+            response.EnsureSuccessStatusCode();
             return response;
         }
     }

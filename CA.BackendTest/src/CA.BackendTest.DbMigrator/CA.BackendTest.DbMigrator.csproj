@@ -8,6 +8,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>$(NoWarn);CS1591;CS0162;CS8618;CS8602;</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>$(NoWarn);CS1591;CS0162;CS8618;CS8602;</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="appsettings.json" />
     <Content Include="appsettings.json">

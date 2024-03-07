@@ -103,6 +103,9 @@ public class BackendTestWebModule : AbpModule
         var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
 
+        //IHttpClientFactory
+        context.Services.AddHttpClient();
+
         ConfigureAuthentication(context);
         ConfigureUrls(configuration);
         ConfigureBundles();

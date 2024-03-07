@@ -1,10 +1,11 @@
 ﻿using CA.BackendTest.DTO.Customers;
 using System;
 using System.Collections.Generic;
+using Volo.Abp.Application.Dtos;
 
 namespace CA.BackendTest.DTO.Billings
 {
-    public class BillingDto
+    public class BillingDto : AuditedEntityDto<Guid>
     {
         public string InvoiceNumber { get; set; }
         public CustomerDto Customer { get; set; }
