@@ -1,4 +1,5 @@
-﻿using CA.BackendTest.Customers;
+﻿using CA.BackendTest.Billings;
+using CA.BackendTest.Customers;
 using CA.BackendTest.Products;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -58,6 +59,8 @@ public class BackendTestDbContext :
 
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<Billing> Billings { get; set; }
+    public DbSet <BillingLine> BillingLines { get; set; }
 
     public BackendTestDbContext(DbContextOptions<BackendTestDbContext> options)
         : base(options)
@@ -91,6 +94,19 @@ public class BackendTestDbContext :
         builder.Entity<Product>(b =>
         {
             b.ToTable(BackendTestConsts.DbTablePrefix + "Products", BackendTestConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+
+        builder.Entity<Billing>(b =>
+        {
+            b.ToTable(BackendTestConsts.DbTablePrefix + "Billings", BackendTestConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.HasMany(billing => billing.Lines).WithOne(line => line.Billing).HasForeignKey(line => line.BillingId).IsRequired();
+        });
+
+        builder.Entity<BillingLine>(b =>
+        {
+            b.ToTable(BackendTestConsts.DbTablePrefix + "BillingLines", BackendTestConsts.DbSchema);
             b.ConfigureByConvention();
         });
     }

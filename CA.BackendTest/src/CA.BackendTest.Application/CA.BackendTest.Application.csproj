@@ -8,12 +8,22 @@
     <RootNamespace>CA.BackendTest</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>$(NoWarn);CS1591;CS0162;CS8618;CS8602;CS8618;CS8604;</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>$(NoWarn);CS1591;CS0162;CS8618;CS8602;CS8618;CS8604;</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\CA.BackendTest.Domain\CA.BackendTest.Domain.csproj" />
     <ProjectReference Include="..\CA.BackendTest.Application.Contracts\CA.BackendTest.Application.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Volo.Abp.Account.Application" Version="8.0.4" />
     <PackageReference Include="Volo.Abp.Identity.Application" Version="8.0.4" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="8.0.4" />
